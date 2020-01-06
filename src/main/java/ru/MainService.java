@@ -47,15 +47,16 @@ public class MainService {
                 System.out.println(e.readLine());
             }
             LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-            Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + file.getPath());
-            FileSystemResource value = new FileSystemResource(new File("asfasf" + file.getPath()));
+            //Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + file.getPath());
+            FileSystemResource value = new FileSystemResource(file);
             System.out.println(value.getFile().length());
-            map.add("file", value);
+            map.add("data", value);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+            headers.add("Authorization", "Bearer d733f9dd-1fbf-4488-8dcd-0ca8105c42c2");
             HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
             RestTemplate restTemplate = new RestTemplate();
-            restTemplate.exchange("http://localhost:8081/file?cameraId=" + cameraId, HttpMethod.POST, requestEntity, String.class);
+            System.out.println( restTemplate.exchange("http://localhost:8081/rest/v2/files/?name=" + file.getName() + "q", HttpMethod.POST, requestEntity, String.class).getBody());
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {

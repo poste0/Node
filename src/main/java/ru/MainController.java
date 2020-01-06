@@ -21,7 +21,7 @@ public class MainController {
     private MainService service;
 
     @RequestMapping(value = "/file", method = RequestMethod.POST)
-    public ResponseEntity get(@RequestBody MultipartFile file, @RequestParam(name = "cameraId") String cameraId){
+    public ResponseEntity get(@RequestBody MultipartFile file){
         Executor executor = new ConcurrentTaskExecutor();
         executor.execute(new Runnable() {
             @Override
@@ -36,7 +36,18 @@ public class MainController {
 
                 try {
                     file.transferTo(result);
-                    service.process(result, cameraId);
+                    result.createNewFile();
+                    LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+                    //Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + file.getPath());
+                    FileSystemResource value = new FileSystemResource(result);
+                    System.out.println(value.getFile().length());
+                    map.add("file", value);
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+                    headers.add("Authorization", "Bearer 01d3dc23-a8c3-4607-96ed-dae47d268170");
+                    HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
+                    RestTemplate restTemplate = new RestTemplate();
+                    System.out.println( restTemplate.exchange("http://localhost:8081/app/rest/v2/files/?name=" + file.getName() + "q", HttpMethod.POST, requestEntity, String.class).getBody());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
