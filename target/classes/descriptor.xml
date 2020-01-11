@@ -1,20 +1,8 @@
 <descriptor>
     <pathToCommand></pathToCommand>
-    <command>flow</command>
+    <command>s.py</command>
         <param>
-            <name>--model</name>
-            <value>cfg/yolo.cfg</value>
-        </param>
-        <param>
-            <name>--load</name>
-            <value>bin/yolo.weights</value>
-        </param>
-        <param>
-            <name>--demo</name>
-            <value>video.mp4</value>
-        </param>
-        <param>
-            <name>--saveVideo</name>
-            <value></value>
+            <name>file</name>
+            <value>s</value>
         </param>
 </descriptor>

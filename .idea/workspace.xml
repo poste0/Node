@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="549d77e3-5482-4c2e-a744-4aa0860fe93a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/MainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/MainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/descriptor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/descriptor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/MainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/MainService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/MainService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +38,6 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="75" />
-    <option name="y" value="44" />
-    <option name="width" value="1067" />
-    <option name="height" value="800" />
   </component>
   <component name="ProjectId" id="1W1zpwicAX9D7eWkvLqHD8u61nC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -90,7 +92,9 @@
       <workItem from="1578416295947" duration="622000" />
       <workItem from="1578420756723" duration="599000" />
       <workItem from="1578479390959" duration="1198000" />
-      <workItem from="1578592618185" duration="843000" />
+      <workItem from="1578592618185" duration="1326000" />
+      <workItem from="1578754950681" duration="8089000" />
+      <workItem from="1578767890813" duration="6026000" />
     </task>
     <task id="LOCAL-00001" summary="Change">
       <created>1578339176673</created>
@@ -99,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578339176673</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Almost">
+      <created>1578593546387</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1578593546387</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,41 +119,42 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="File" />
     <MESSAGE value="Change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change" />
+    <MESSAGE value="Almost" />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost" />
   </component>
   <component name="WindowStateProjectService">
     <state x="516" y="417" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1578332095025">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
     <state x="516" y="417" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/70.27.1210.997@70.27.1210.997" timestamp="1578332095025" />
-    <state x="240" y="122" width="860" height="814" key="CommitChangelistDialog2" timestamp="1578339176387">
+    <state x="240" y="122" width="860" height="814" key="CommitChangelistDialog2" timestamp="1578593546123">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
-    <state x="240" y="122" width="860" height="814" key="CommitChangelistDialog2/70.27.1210.997@70.27.1210.997" timestamp="1578339176387" />
-    <state width="1144" height="243" key="GridCell.Tab.0.bottom" timestamp="1578593464939">
+    <state x="240" y="122" width="860" height="814" key="CommitChangelistDialog2/70.27.1210.997@70.27.1210.997" timestamp="1578593546123" />
+    <state width="1144" height="243" key="GridCell.Tab.0.bottom" timestamp="1578773959935">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
-    <state width="1144" height="243" key="GridCell.Tab.0.bottom/70.27.1210.997@70.27.1210.997" timestamp="1578593464939" />
-    <state width="1144" height="243" key="GridCell.Tab.0.center" timestamp="1578593464938">
+    <state width="1144" height="243" key="GridCell.Tab.0.bottom/70.27.1210.997@70.27.1210.997" timestamp="1578773959935" />
+    <state width="1144" height="243" key="GridCell.Tab.0.center" timestamp="1578773959934">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
-    <state width="1144" height="243" key="GridCell.Tab.0.center/70.27.1210.997@70.27.1210.997" timestamp="1578593464938" />
-    <state width="1144" height="243" key="GridCell.Tab.0.left" timestamp="1578593464938">
+    <state width="1144" height="243" key="GridCell.Tab.0.center/70.27.1210.997@70.27.1210.997" timestamp="1578773959934" />
+    <state width="1144" height="243" key="GridCell.Tab.0.left" timestamp="1578773959934">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
-    <state width="1144" height="243" key="GridCell.Tab.0.left/70.27.1210.997@70.27.1210.997" timestamp="1578593464938" />
-    <state width="1144" height="243" key="GridCell.Tab.0.right" timestamp="1578593464938">
+    <state width="1144" height="243" key="GridCell.Tab.0.left/70.27.1210.997@70.27.1210.997" timestamp="1578773959934" />
+    <state width="1144" height="243" key="GridCell.Tab.0.right" timestamp="1578773959935">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
-    <state width="1144" height="243" key="GridCell.Tab.0.right/70.27.1210.997@70.27.1210.997" timestamp="1578593464938" />
-    <state x="270" y="261" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1578339186419">
+    <state width="1144" height="243" key="GridCell.Tab.0.right/70.27.1210.997@70.27.1210.997" timestamp="1578773959935" />
+    <state x="270" y="261" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1578593554940">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
-    <state x="270" y="261" width="800" height="535" key="Vcs.Push.Dialog.v2/70.27.1210.997@70.27.1210.997" timestamp="1578339186419" />
-    <state x="331" y="353" key="com.intellij.ide.util.TipDialog" timestamp="1578592619028">
+    <state x="270" y="261" width="800" height="535" key="Vcs.Push.Dialog.v2/70.27.1210.997@70.27.1210.997" timestamp="1578593554940" />
+    <state x="331" y="353" key="com.intellij.ide.util.TipDialog" timestamp="1578754950627">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
-    <state x="331" y="353" key="com.intellij.ide.util.TipDialog/70.27.1210.997@70.27.1210.997" timestamp="1578592619028" />
+    <state x="331" y="353" key="com.intellij.ide.util.TipDialog/70.27.1210.997@70.27.1210.997" timestamp="1578754950627" />
     <state x="443" y="445" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578592629453">
       <screen x="70" y="27" width="1210" height="997" />
     </state>
