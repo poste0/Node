@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.function.BiConsumer;
 
 @Service
 public class MainService {
@@ -46,11 +47,12 @@ public class MainService {
             while(process.isAlive()){
                 System.out.println(e.readLine());
             }
+
             HttpHeaders headersm = new HttpHeaders();
             headersm.add("Authorization", "Basic Y2xpZW50OnNlY3JldA==");
             headersm.add("Content-Type", "application/x-www-form-urlencoded");
             LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-            Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + file.getPath());
+            Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + file.getPath() + " -v error");
             BufferedReader i = new BufferedReader(new InputStreamReader(process1.getInputStream()));
             BufferedReader er = new BufferedReader(new InputStreamReader(process1.getErrorStream()));
             while(process1.isAlive()){
