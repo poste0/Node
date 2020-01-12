@@ -7,6 +7,7 @@
     <groupId>Platform</groupId>
     <artifactId>Node</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
     <build>
         <plugins>
             <plugin>
@@ -16,6 +17,11 @@
                     <source>8</source>
                     <target>8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.1.RELEASE</version>
             </plugin>
         </plugins>
     </build>
