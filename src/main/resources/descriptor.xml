@@ -5,4 +5,12 @@
             <name>file</name>
             <value>s</value>
         </param>
+    <param>
+        <name>CPU</name>
+        <value>cpu</value>
+    </param>
+    <param>
+        <name>GPU</name>
+        <value>Card</value>
+    </param>
 </descriptor>

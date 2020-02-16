@@ -1,5 +1,6 @@
 package ru;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -24,7 +25,7 @@ public class MainController {
     public ResponseEntity get(@RequestBody MultipartFile file){
         File result = new File(file.getOriginalFilename());
         try {
-            file.transferTo(result);
+            FileUtils.copyInputStreamToFile(file.getInputStream(), result);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,6 +42,16 @@ public class MainController {
             }
         });
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/cpu", method = RequestMethod.GET)
+    public ResponseEntity<String> getCpu(){
+        return new ResponseEntity(service.getCpu(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/gpu", method = RequestMethod.GET)
+    public ResponseEntity<String> getGpu(){
+        return new ResponseEntity<>(service.getGpu(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/g", method = RequestMethod.GET)

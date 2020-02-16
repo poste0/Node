@@ -7,16 +7,16 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 @Service
 public class MainService {
@@ -24,10 +24,7 @@ public class MainService {
     public void process(File file, String cameraId){
         try {
             file.createNewFile();
-            JAXBContext context = JAXBContext.newInstance(Descriptor.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            File f = new File("src/main/resources/descriptor.xml");
-            Descriptor descriptor = (Descriptor) unmarshaller.unmarshal(f);
+            Descriptor descriptor = getDescriptor();
             descriptor.getParams().get(0).setValue(file.getPath());
             StringBuilder w = new StringBuilder();
             w.append("python3 ")
@@ -56,7 +53,8 @@ public class MainService {
             BufferedReader i = new BufferedReader(new InputStreamReader(process1.getInputStream()));
             BufferedReader er = new BufferedReader(new InputStreamReader(process1.getErrorStream()));
             while(process1.isAlive()){
-                continue;
+                System.out.println("ffmpeg");
+                System.out.println(i.readLine());
             }
             File result = new File("asfasf" + file.getPath());
             FileSystemResource value = new FileSystemResource(result);
@@ -82,5 +80,53 @@ public class MainService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Descriptor getDescriptor() throws JAXBException, FileNotFoundException {
+        JAXBContext context = JAXBContext.newInstance(Descriptor.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        File f = ResourceUtils.getFile("classpath:descriptor.xml");
+        Descriptor descriptor = (Descriptor) unmarshaller.unmarshal(f);
+
+        return descriptor;
+    }
+
+    public String getCpu(){
+        try {
+            Descriptor descriptor = getDescriptor();
+            List<Param> cpuParam = descriptor.getParams().stream().filter((param -> {
+                return param.getName().equals("CPU");
+            })).collect(Collectors.toList());
+
+            if(cpuParam.size() != 1){
+                throw new IllegalStateException();
+            }
+            return cpuParam.get(0).getValue();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return "Unknown";
+    }
+
+    public String getGpu(){
+        try {
+            Descriptor descriptor = getDescriptor();
+            List<Param> gpuParam = descriptor.getParams().stream().filter((param -> {
+                return param.getName().equals("GPU");
+            })).collect(Collectors.toList());
+
+            if(gpuParam.size() != 1){
+                throw new IllegalStateException();
+            }
+            return gpuParam.get(0).getValue();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "Unknown";
     }
 }
