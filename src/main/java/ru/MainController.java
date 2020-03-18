@@ -22,7 +22,8 @@ public class MainController {
     private MainService service;
 
     @RequestMapping(value = "/file", method = RequestMethod.POST)
-    public ResponseEntity get(@RequestBody MultipartFile file){
+    public ResponseEntity get(@RequestBody MultipartFile file, @RequestParam(name = "login") String login,
+                              @RequestParam(name = "password") String password){
         File result = new File(file.getOriginalFilename());
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), result);
@@ -35,7 +36,7 @@ public class MainController {
             public void run() {
                 try {
                     result.createNewFile();
-                    service.process(result, "");
+                    service.process(result, login, password);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -52,24 +53,5 @@ public class MainController {
     @RequestMapping(value = "/gpu", method = RequestMethod.GET)
     public ResponseEntity<String> getGpu(){
         return new ResponseEntity<>(service.getGpu(), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/g", method = RequestMethod.GET)
-    public void g(@RequestParam("path") String path){
-        LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-        try {
-            Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        FileSystemResource value = new FileSystemResource(new File("asfasf" + path));
-        System.out.println(value.getFile().length());
-        map.add("file", value);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-        HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.exchange("http://localhost:8081/app-portal/file?cameraId=" + "cf0bbdfe-120c-b5f4-d47f-232beeae8f48", HttpMethod.POST, requestEntity, String.class);
-
     }
 }

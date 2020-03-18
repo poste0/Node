@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class MainService {
 
-    public void process(File file, String cameraId){
+    public void process(File file, String login, String password){
         try {
             file.createNewFile();
             Descriptor descriptor = getDescriptor();
@@ -49,14 +50,14 @@ public class MainService {
             headersm.add("Authorization", "Basic Y2xpZW50OnNlY3JldA==");
             headersm.add("Content-Type", "application/x-www-form-urlencoded");
             LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-            Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + file.getPath() + " -v error");
+            Process process1 = Runtime.getRuntime().exec("ffmpeg -i " + "video.avi " + "asfasf" + file.getPath() + ".mp4 -v error");
             BufferedReader i = new BufferedReader(new InputStreamReader(process1.getInputStream()));
             BufferedReader er = new BufferedReader(new InputStreamReader(process1.getErrorStream()));
             while(process1.isAlive()){
                 System.out.println("ffmpeg");
-                System.out.println(i.readLine());
+                System.out.println(er.readLine());
             }
-            File result = new File("asfasf" + file.getPath());
+            File result = new File("asfasf" + file.getPath() + ".mp4");
             FileSystemResource value = new FileSystemResource(result);
             System.out.println(value.getFile().length());
             map.add("file", value);
@@ -65,8 +66,8 @@ public class MainService {
             String token = "";
             LinkedMultiValueMap<String, Object> tokenm = new LinkedMultiValueMap<>();
             tokenm.add("grant_type", "password");
-            tokenm.add("username", "admin");
-            tokenm.add("password", "admin");
+            tokenm.add("username", login);
+            tokenm.add("password", password);
             HttpEntity<LinkedMultiValueMap<String, Object>> requestm = new HttpEntity<>(tokenm, headersm);
             RestTemplate templatem = new RestTemplate();
             String message = templatem.exchange("http://localhost:8081/app/rest/v2/oauth/token", HttpMethod.POST, requestm, String.class).getBody();
@@ -75,6 +76,10 @@ public class MainService {
             HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
             RestTemplate restTemplate = new RestTemplate();
             System.out.println( restTemplate.exchange("http://localhost:8081/app/rest/v2/files/?name=" + result.getPath() , HttpMethod.POST, requestEntity, String.class).getBody());
+
+            Files.delete(result.toPath());
+            Files.delete(file.toPath());
+
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {
