@@ -1,6 +1,9 @@
 package ru;
 
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,6 +24,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class MainService {
+
+    @Autowired
+    private ResourceLoader loader;
 
     public void process(File file, String login, String password){
         try {
@@ -90,7 +96,12 @@ public class MainService {
     private Descriptor getDescriptor() throws JAXBException, FileNotFoundException {
         JAXBContext context = JAXBContext.newInstance(Descriptor.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        File f = ResourceUtils.getFile("classpath:descriptor.xml");
+        File f = null;
+        try {
+            f = loader.getResource("classpath:descriptor.xml").getFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Descriptor descriptor = (Descriptor) unmarshaller.unmarshal(f);
 
         return descriptor;
