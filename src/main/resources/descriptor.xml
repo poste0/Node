@@ -13,4 +13,8 @@
         <name>GPU</name>
         <value>Card</value>
     </param>
+    <param>
+        <name>Server</name>
+        <value></value>
+    </param>
 </descriptor>

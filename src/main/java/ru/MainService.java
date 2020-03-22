@@ -74,14 +74,17 @@ public class MainService {
             tokenm.add("grant_type", "password");
             tokenm.add("username", login);
             tokenm.add("password", password);
+            String address = descriptor.getParams().stream().filter(param -> {
+                return param.getName().equals("Server");
+            }).findFirst().get().getValue();
             HttpEntity<LinkedMultiValueMap<String, Object>> requestm = new HttpEntity<>(tokenm, headersm);
             RestTemplate templatem = new RestTemplate();
-            String message = templatem.exchange("http://localhost:8081/app/rest/v2/oauth/token", HttpMethod.POST, requestm, String.class).getBody();
+            String message = templatem.exchange(address + "app/rest/v2/oauth/token", HttpMethod.POST, requestm, String.class).getBody();
             token = message.split("\"")[3];
             headers.add("Authorization", "Bearer " + token);
             HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
             RestTemplate restTemplate = new RestTemplate();
-            System.out.println( restTemplate.exchange("http://localhost:8081/app/rest/v2/files/?name=" + result.getPath() , HttpMethod.POST, requestEntity, String.class).getBody());
+            System.out.println( restTemplate.exchange(address + "/app/rest/v2/files/?name=" + result.getPath() , HttpMethod.POST, requestEntity, String.class).getBody());
 
             Files.delete(result.toPath());
             Files.delete(file.toPath());
