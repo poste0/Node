@@ -96,9 +96,9 @@ public class MainService {
     private Descriptor getDescriptor() throws JAXBException, FileNotFoundException {
         JAXBContext context = JAXBContext.newInstance(Descriptor.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        File f = null;
+        File f = new File("descriptor.xml");
         try {
-            f = loader.getResource("classpath:descriptor.xml").getFile();
+            FileUtils.copyInputStreamToFile(loader.getResource("classpath:descriptor.xml").getInputStream(), f);
         } catch (IOException e) {
             e.printStackTrace();
         }

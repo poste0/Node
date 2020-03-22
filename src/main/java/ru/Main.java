@@ -1,5 +1,6 @@
 package ru;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,9 +33,9 @@ public class Main {
         }
 
         ResourceLoader loader = applicationContext.getBean(ResourceLoader.class);
-        File f = null;
+        File f = new File("descriptor.xml");
         try {
-            f = loader.getResource("classpath:descriptor.xml").getFile();
+            FileUtils.copyInputStreamToFile(loader.getResource("classpath:descriptor.xml").getInputStream(), f);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
