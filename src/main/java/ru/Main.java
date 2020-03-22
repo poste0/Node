@@ -1,7 +1,10 @@
 package ru;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.ResourceUtils;
 
 import javax.xml.bind.JAXBContext;
@@ -13,6 +16,8 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) {
+        ApplicationContext applicationContext = SpringApplication.run(Main.class);
+
         JAXBContext context = null;
         try {
             context = JAXBContext.newInstance(Descriptor.class);
@@ -25,10 +30,14 @@ public class Main {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
+
+        ResourceLoader loader = applicationContext.getBean(ResourceLoader.class);
         File f = null;
         try {
-            f = ResourceUtils.getFile("classpath:descriptor.xml");
+            f = loader.getResource("classpath:descriptor.xml").getFile();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         try {
@@ -37,6 +46,6 @@ public class Main {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        SpringApplication.run(Main.class);
+
     }
 }
