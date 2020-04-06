@@ -23,7 +23,8 @@ public class MainController {
 
     @RequestMapping(value = "/file", method = RequestMethod.POST)
     public ResponseEntity get(@RequestBody MultipartFile file, @RequestParam(name = "login") String login,
-                              @RequestParam(name = "password") String password){
+                              @RequestParam(name = "password") String password, @RequestParam(name = "cameraId") String cameraId,
+                                @RequestParam(name = "videoId") String videoId){
         File result = new File(file.getOriginalFilename());
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), result);
@@ -36,7 +37,7 @@ public class MainController {
             public void run() {
                 try {
                     result.createNewFile();
-                    service.process(result, login, password);
+                    service.process(result, login, password, cameraId, videoId);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -53,5 +54,10 @@ public class MainController {
     @RequestMapping(value = "/gpu", method = RequestMethod.GET)
     public ResponseEntity<String> getGpu(){
         return new ResponseEntity<>(service.getGpu(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/status", method = RequestMethod.GET)
+    public ResponseEntity<String> getStatus(){
+        return new ResponseEntity(service.isProcessing(), HttpStatus.OK);
     }
 }
