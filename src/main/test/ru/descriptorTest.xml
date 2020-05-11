@@ -21,20 +21,32 @@
 
 <descriptor>
     <processor>
-        <command>python3 s.py</command>
+        <command>test command</command>
         <outputFile>video.avi</outputFile>
-        <params prefix="">
+        <params prefix="--">
             <param isDynamic="true">
-                <name>file</name>
+                <name>testParam1</name>
+            </param>
+            <param isDynamic="false">
+                <name>testParam2</name>
+                <value>value2</value>
             </param>
         </params>
     </processor>
 
     <node>
-        <params>
+        <params prefix="">
+            <param>
+                <name>testNodeParam1</name>
+                <value>value1</value>
+            </param>
 
+            <param>
+                <name>testNodeParam2</name>
+                <value>value2</value>
+            </param>
         </params>
 
-        <server>http://localhost</server>
+        <server>http://localhost:8080</server>
     </node>
 </descriptor>

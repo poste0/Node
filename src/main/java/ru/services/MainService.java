@@ -1,7 +1,5 @@
-package ru;
+package ru.services;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.FileUtils;
@@ -14,8 +12,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
+import ru.descriptor.Descriptor;
+import ru.descriptor.Param;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -23,7 +22,6 @@ import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +33,7 @@ public class MainService {
     private boolean isProcessing = false;
 
     public void process(File file, String login, String password, String cameraId, String videoId){
-        try {
+        /*try {
             isProcessing = true;
             file.createNewFile();
             Descriptor descriptor = getDescriptor();
@@ -51,6 +49,7 @@ public class MainService {
                     w.append(d.getName() + " ");
                 }
             });
+
 
             System.out.println(w);
             Process process = Runtime.getRuntime().exec(w.toString());
@@ -148,6 +147,10 @@ public class MainService {
         finally {
             isProcessing = false;
         }
+
+         */
+
+
     }
 
     private Descriptor getDescriptor() throws JAXBException, FileNotFoundException {
@@ -165,7 +168,7 @@ public class MainService {
     }
 
     public String getCpu(){
-        try {
+        /*try {
             Descriptor descriptor = getDescriptor();
             List<Param> cpuParam = descriptor.getParams().stream().filter((param -> {
                 return param.getName().equals("CPU");
@@ -181,11 +184,15 @@ public class MainService {
             e.printStackTrace();
         }
 
+
+         */
+
+
         return "Unknown";
     }
 
     public String getGpu(){
-        try {
+        /*try {
             Descriptor descriptor = getDescriptor();
             List<Param> gpuParam = descriptor.getParams().stream().filter((param -> {
                 return param.getName().equals("GPU");
@@ -200,6 +207,10 @@ public class MainService {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+         */
+
+
         return "Unknown";
     }
 
