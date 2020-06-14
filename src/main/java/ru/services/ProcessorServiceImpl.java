@@ -35,8 +35,6 @@ public class ProcessorServiceImpl implements ProcessorService {
     @Autowired
     private ResourceLoader loader;
 
-    private final long period = 1000;
-
     private final Consumer<BufferedReader> readerConsumer = reader -> {reader.lines().forEach(System.out::println);};
 
     @Autowired
@@ -63,22 +61,21 @@ public class ProcessorServiceImpl implements ProcessorService {
         Param fileParam = new Param();
         fileParam.setName("file");
         fileParam.setValue(file.getPath());
+
         ProcessOs videoProcess = new ProcessOs(descriptor.getProcessor().getExecLine(Collections.singletonList(fileParam)));
+        long period = 1000;
         try {
             videoProcess.startProcess(period, readerConsumer, readerConsumer);
-        } catch (InterruptedException e) {
-            throw new InterruptedException("Processing of video failed");
-        }
 
-        Files.delete(file.toPath());
+            Files.delete(file.toPath());
 
-        final String ffmpegCommand = "ffmpeg -i " + descriptor.getProcessor().getOutputFile() + " " + file.getPath() + " -v error";
-        ProcessOs ffmpegProcess = new ProcessOs(ffmpegCommand);
-        try {
+            final String ffmpegCommand = "ffmpeg -i " + descriptor.getProcessor().getOutputFile() + " " + file.getPath() + " -v error";
+            ProcessOs ffmpegProcess = new ProcessOs(ffmpegCommand);
             ffmpegProcess.startProcess(period, readerConsumer, readerConsumer);
         }
         catch (InterruptedException e){
-            throw new InterruptedException("FFmpeg failed");
+            updateSourceVideo(login, password, videoId);
+            throw new InterruptedException("Processing of video failed");
         }
 
         LinkedMultiValueMap<String, Object> videoBody = new LinkedMultiValueMap<>();
@@ -92,6 +89,22 @@ public class ProcessorServiceImpl implements ProcessorService {
 
         Files.delete(file.toPath());
 
+        insertNewVideo(login, password, videoId, cameraId, file, videoStatus);
+
+        updateSourceVideo(login, password, videoId);
+    }
+
+    private void updateSourceVideo(String login, String password, String videoId){
+        JsonObject updateVideo = new JsonObject();
+        updateVideo.addProperty("status", "ready");
+        updateVideo.addProperty("node", "null");
+
+        HttpRequest videoUpdate = context.getBean(HttpRequest.class);
+        videoUpdate.init(login, password, HttpMethod.PUT, MediaType.APPLICATION_JSON, "/app/rest/v2/entities/platform_Video/" + videoId);
+
+    }
+
+    private void insertNewVideo(String login, String password, String videoId, String cameraId, File file, String videoStatus){
         JsonObject video = new JsonObject();
         video.addProperty("id", videoId);
         JsonObject camera = new JsonObject();
@@ -110,16 +123,6 @@ public class ProcessorServiceImpl implements ProcessorService {
         HttpRequest videoRequest = context.getBean(HttpRequest.class);
         videoRequest.init(login, password, HttpMethod.POST, MediaType.APPLICATION_JSON, "/app/rest/v2/entities/platform_Video");
         String message = httpService.send(videoRequest, jsonObject.toString());
-
-        JsonObject updateVideo = new JsonObject();
-        updateVideo.addProperty("status", "ready");
-        updateVideo.addProperty("node", "null");
-
-        HttpRequest videoUpdate = context.getBean(HttpRequest.class);
-        videoUpdate.init(login, password, HttpMethod.PUT, MediaType.APPLICATION_JSON, "/app/rest/v2/entities/platform_Video/" + videoId);
-
-
-
     }
 
     @Override

@@ -1,9 +1,11 @@
 package ru;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.services.HardwareService;
@@ -12,6 +14,7 @@ import ru.services.ProcessorService;
 
 import javax.xml.bind.JAXBException;
 import java.io.*;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 
 @RestController
@@ -27,12 +30,18 @@ public class MainController {
     public ResponseEntity get(@RequestBody MultipartFile file, @RequestParam(name = "login") String login,
                               @RequestParam(name = "password") String password, @RequestParam(name = "cameraId") String cameraId,
                                 @RequestParam(name = "videoId") String videoId){
-        File result = new File(file.getOriginalFilename());
+        String resultFileName = file.getOriginalFilename();
+        if(Objects.isNull(resultFileName) || Strings.isEmpty(resultFileName)){
+            return ResponseEntity.badRequest().build();
+        }
+
+        File result = new File(resultFileName);
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), result);
         } catch (IOException e) {
-            e.printStackTrace();
+            return ResponseEntity.unprocessableEntity().body(e.getMessage());
         }
+
         Executor executor = new ConcurrentTaskExecutor();
         executor.execute(new Runnable() {
             @Override
@@ -40,11 +49,7 @@ public class MainController {
                 try {
                     result.createNewFile();
                     service.process(result, login, password, cameraId, videoId);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (JAXBException e) {
+                } catch (IOException | JAXBException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
