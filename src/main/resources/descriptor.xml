@@ -20,7 +20,7 @@
 </descriptor><-->
 
 <descriptor>
-    <processor>
+    <processor type="Video">
         <command>python3 s.py</command>
         <outputFile>video.avi</outputFile>
         <params prefix="">

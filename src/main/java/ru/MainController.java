@@ -9,7 +9,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.services.HardwareService;
-import ru.services.MainService;
 import ru.services.ProcessorService;
 
 import javax.xml.bind.JAXBException;
@@ -29,7 +28,7 @@ public class MainController {
     @RequestMapping(value = "/file", method = RequestMethod.POST)
     public ResponseEntity get(@RequestBody MultipartFile file, @RequestParam(name = "login") String login,
                               @RequestParam(name = "password") String password, @RequestParam(name = "cameraId") String cameraId,
-                                @RequestParam(name = "videoId") String videoId){
+                                @RequestParam(name = "videoId") String videoId, @RequestParam(name = "nodeId") String nodeId){
         String resultFileName = file.getOriginalFilename();
         if(Objects.isNull(resultFileName) || Strings.isEmpty(resultFileName)){
             return ResponseEntity.badRequest().build();
@@ -48,7 +47,7 @@ public class MainController {
             public void run() {
                 try {
                     result.createNewFile();
-                    service.process(result, login, password, cameraId, videoId);
+                    service.process(result, login, password, cameraId, videoId, nodeId);
                 } catch (IOException | JAXBException | InterruptedException e) {
                     e.printStackTrace();
                 }

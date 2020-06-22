@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 public interface ProcessorService {
-    void process(File file, String login, String password, String cameraId, String videoId) throws JAXBException, IOException, InterruptedException;
+    void process(File file, String login, String password, String cameraId, String videoId, String nodeId) throws JAXBException, IOException, InterruptedException;
 
     boolean isProcessing();
 }
