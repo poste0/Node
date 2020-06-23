@@ -51,75 +51,82 @@ public class ProcessorServiceImpl implements ProcessorService {
 
     @Override
     public void process(File file, String login, String password, String cameraId, String videoId, String nodeId) throws JAXBException, IOException, InterruptedException {
-        Descriptor descriptor = DescriptorUtils.getDescriptor(loader);
-
-        if(!file.exists()){
-            boolean isFileCreated = file.createNewFile();
-            if(!isFileCreated){
-                throw new FileNotFoundException("The file has not been created");
-            }
-        }
-
-        Param fileParam = new Param();
-        fileParam.setName("file");
-        fileParam.setValue(file.getPath());
-
-        if(!Files.isDirectory(Paths.get(descriptor.getProcessor().getOutputFile())) && descriptor.getProcessor().getType().equals("Image")){
-            Files.createDirectory(Paths.get(descriptor.getProcessor().getOutputFile()));
-        }
-
-        ProcessOs videoProcess = new ProcessOs(descriptor.getProcessor().getExecLine(Collections.singletonList(fileParam)));
-        long period = 1000;
         try {
-            videoProcess.startProcess(period, readerConsumer, readerConsumer);
 
-            Files.delete(file.toPath());
+            Descriptor descriptor = DescriptorUtils.getDescriptor(loader);
 
-
-        }
-        catch (InterruptedException e){
-            updateSourceVideo(login, password, videoId);
-            throw new InterruptedException("Processing of video failed");
-        }
-
-        if(descriptor.getProcessor().getType().equals("Video")) {
-            final String ffmpegCommand = "ffmpeg -i " + descriptor.getProcessor().getOutputFile() + " " + file.getPath() + " -v error";
-            ProcessOs ffmpegProcess = new ProcessOs(ffmpegCommand);
-            ffmpegProcess.startProcess(period, readerConsumer, readerConsumer);
-
-            LinkedMultiValueMap<String, Object> videoBody = new LinkedMultiValueMap<>();
-            FileSystemResource fileResource = new FileSystemResource(file);
-            videoBody.add("file", fileResource);
-
-            HttpRequest request = context.getBean(HttpRequest.class);
-            request.init(login, password, HttpMethod.POST, MediaType.MULTIPART_FORM_DATA, "/app/rest/v2/files?name=" + file.getPath());
-
-            String videoStatus = httpService.send(request, videoBody);
-
-            Files.delete(file.toPath());
-
-            insertNewVideo(login, password, videoId, cameraId, file, videoStatus);
-            updateSourceVideo(login, password, videoId);
-            insertNewVideoProcessing(login, password, videoId, nodeId);
-        }
-        else if(descriptor.getProcessor().getType().equals("Image")){
-            if(!Files.isDirectory(Paths.get(descriptor.getProcessor().getOutputFile()))){
-                throw new IllegalArgumentException("Enter directory of images");
+            if (!file.exists()) {
+                boolean isFileCreated = file.createNewFile();
+                if (!isFileCreated) {
+                    throw new FileNotFoundException("The file has not been created");
+                }
             }
 
-            List<String> imageIds = insertNewImages(login, password, videoId, descriptor.getProcessor().getOutputFile());
-            insertNewImageProcessings(login, password, imageIds, nodeId);
-            updateSourceVideo(login, password, videoId);
+            Param fileParam = new Param();
+            fileParam.setName("file");
+            fileParam.setValue(file.getPath());
+
+            if (!Files.isDirectory(Paths.get(descriptor.getProcessor().getOutputFile())) && descriptor.getProcessor().getType().equals("Image")) {
+                Files.createDirectory(Paths.get(descriptor.getProcessor().getOutputFile()));
+            }
+
+            ProcessOs videoProcess = new ProcessOs(descriptor.getProcessor().getExecLine(Collections.singletonList(fileParam)));
+            long period = 1000;
+            try {
+                videoProcess.startProcess(period, readerConsumer, readerConsumer);
+
+                Files.delete(file.toPath());
+
+
+            } catch (InterruptedException e) {
+                updateSourceVideo(login, password, videoId, "error");
+                throw new InterruptedException("Processing of video failed");
+            }
+
+            if (descriptor.getProcessor().getType().equals("Video")) {
+                final String ffmpegCommand = "ffmpeg -i " + descriptor.getProcessor().getOutputFile() + " " + file.getPath() + " -v error";
+                ProcessOs ffmpegProcess = new ProcessOs(ffmpegCommand);
+                ffmpegProcess.startProcess(period, readerConsumer, readerConsumer);
+
+                LinkedMultiValueMap<String, Object> videoBody = new LinkedMultiValueMap<>();
+                FileSystemResource fileResource = new FileSystemResource(file);
+                videoBody.add("file", fileResource);
+
+                HttpRequest request = context.getBean(HttpRequest.class);
+                request.init(login, password, HttpMethod.POST, MediaType.MULTIPART_FORM_DATA, "/app/rest/v2/files?name=" + file.getPath());
+
+                String videoStatus = httpService.send(request, videoBody);
+
+                Files.delete(file.toPath());
+
+                insertNewVideo(login, password, videoId, cameraId, file, videoStatus);
+                updateSourceVideo(login, password, videoId, "ready");
+                insertNewVideoProcessing(login, password, videoId, nodeId);
+            } else if (descriptor.getProcessor().getType().equals("Image")) {
+                if (!Files.isDirectory(Paths.get(descriptor.getProcessor().getOutputFile()))) {
+                    updateSourceVideo(login, password, videoId, "error");
+                    throw new IllegalArgumentException("Enter directory of images");
+                }
+
+                String imageProcessingId = insertNewImageProcessings(login, password, nodeId);
+                insertNewImages(login, password, videoId, descriptor.getProcessor().getOutputFile(), imageProcessingId);
+                updateSourceVideo(login, password, videoId, "ready");
+            } else {
+                throw new IllegalArgumentException("Wrong type of processor");
+            }
         }
-        else {
-            throw new IllegalArgumentException("Wrong type of processor");
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            updateSourceVideo(login, password, videoId, "error");
         }
     }
 
-    private List<String> insertNewImages(String login, String password, String videoId, String directory) {
+    private void insertNewImages(String login, String password, String videoId, String directory, String imageProcessingId) {
         File files = new File(directory);
         File[] images = files.listFiles();
-        List<String> imageIds = new LinkedList<>();
+
         for(File image: images){
             LinkedMultiValueMap<String, Object> imageBody = new LinkedMultiValueMap<>();
             FileSystemResource fileResource = new FileSystemResource(image);
@@ -141,45 +148,40 @@ public class ProcessorServiceImpl implements ProcessorService {
             JsonObject parentVideo = new JsonObject();
             parentVideo.addProperty("id", videoId);
 
+            JsonObject imageProcessing = new JsonObject();
+            imageProcessing.addProperty("id", imageProcessingId);
+
             imageJson.add("fileDescriptor", fileDescriptor);
             imageJson.add("parentVideo", parentVideo);
+            imageJson.add("imageProcessing", imageProcessing);
 
             HttpRequest videoRequest = context.getBean(HttpRequest.class);
             videoRequest.init(login, password, HttpMethod.POST, MediaType.APPLICATION_JSON, "/app/rest/v2/entities/platform_Image");
             String message = httpService.send(videoRequest, imageJson.toString());
-
-            String imageId = JsonParser.parseString(message).getAsJsonObject().get("id").getAsString();
-            imageIds.add(imageId);
         }
 
-        return imageIds;
     }
 
-    private void insertNewImageProcessings(String login, String password, List<String> imageIds, String nodeId){
+    private String insertNewImageProcessings(String login, String password, String nodeId){
         JsonObject imageProcessing = new JsonObject();
 
         JsonObject node = new JsonObject();
         node.addProperty("id", nodeId);
 
-        JsonArray images = new JsonArray();
-        for(String imageId: imageIds){
-            JsonObject image = new JsonObject();
-            image.addProperty("id", imageId);
-
-            images.add(image);
-        }
-
         imageProcessing.add("node", node);
-        imageProcessing.add("images", images);
 
         HttpRequest videoProcessingRequest = context.getBean(HttpRequest.class);
         videoProcessingRequest.init(login, password, HttpMethod.POST, MediaType.APPLICATION_JSON, "/app/rest/v2/entities/platform_ImageProcessing");
         String message = httpService.send(videoProcessingRequest, imageProcessing.toString());
+
+        String imageProcessingId = JsonParser.parseString(message).getAsJsonObject().get("id").getAsString();
+
+        return imageProcessingId;
     }
 
-    private void updateSourceVideo(String login, String password, String videoId){
+    private void updateSourceVideo(String login, String password, String videoId, String status){
         JsonObject updateVideo = new JsonObject();
-        updateVideo.addProperty("status", "ready");
+        updateVideo.addProperty("status", status);
 
         HttpRequest videoUpdate = context.getBean(HttpRequest.class);
         videoUpdate.init(login, password, HttpMethod.PUT, MediaType.APPLICATION_JSON, "/app/rest/v2/entities/platform_Video/" + videoId);

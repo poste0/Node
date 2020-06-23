@@ -20,9 +20,9 @@
 </descriptor><-->
 
 <descriptor>
-    <processor type="Video">
-        <command>python3 s.py</command>
-        <outputFile>video.avi</outputFile>
+    <processor type="Image">
+        <command>python3 p.py</command>
+        <outputFile>images</outputFile>
         <params prefix="">
             <param isDynamic="true">
                 <name>file</name>
@@ -35,6 +35,6 @@
 
         </params>
 
-        <server>http://localhost</server>
+        <server>http://localhost:8081</server>
     </node>
 </descriptor>
