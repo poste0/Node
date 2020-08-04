@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="549d77e3-5482-4c2e-a744-4aa0860fe93a" name="Default Changelist" comment="Some">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ProcessOs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ProcessOs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/services/ProcessorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/services/ProcessorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/descriptor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/descriptor.xml" afterDir="false" />
@@ -28,12 +31,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="947">
-              <caret line="81" column="66" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="66" />
+            <state relative-caret-position="411">
+              <caret line="305" column="59" selection-start-line="305" selection-start-column="59" selection-end-line="305" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10326#10327#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/test/ru/descriptor/ProcessorTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="56" column="69" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="10" column="106" selection-start-line="10" selection-start-column="106" selection-end-line="10" selection-end-column="106" />
             </state>
           </provider>
         </entry>
@@ -48,10 +71,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/descriptor.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+            <state relative-caret-position="465">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -59,29 +82,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/descriptor.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+            <state relative-caret-position="405">
+              <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Processor.java">
+        <entry file="file://$PROJECT_DIR$/s.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="20" column="82" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="82" />
+            <state relative-caret-position="210">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -89,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="525">
+              <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,10 +110,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/HttpRequest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/HttpService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+            <state relative-caret-position="195">
+              <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -115,18 +126,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/HttpService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -166,7 +165,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/HardwareServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/descriptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/descriptor/Descriptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/ProcessOs.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/descriptor/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/DescriptorUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/services/MainService.java" />
@@ -174,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/GPU.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/hardware/CPU.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/hardware/GPU.java" />
-        <option value="$PROJECT_DIR$/descriptor.xml" />
         <option value="$PROJECT_DIR$/src/main/test/ru/descriptorTest.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ru/descriptor/Param.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/descriptor/Params.java" />
@@ -189,13 +186,15 @@
         <option value="$PROJECT_DIR$/s.py" />
         <option value="$PROJECT_DIR$/src/main/java/ru/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/services/HttpServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/services/ProcessorService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/descriptor/Processor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/services/HttpService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ru/Main.java" />
         <option value="$PROJECT_DIR$/p.py" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/services/ProcessorService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/ProcessOs.java" />
+        <option value="$PROJECT_DIR$/descriptor.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/descriptor.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java" />
       </list>
@@ -236,7 +235,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="78" />
     <option name="y" value="48" />
     <option name="width" value="1190" />
@@ -249,8 +248,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -291,15 +288,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ru" type="462c0819:PsiDirectoryNode" />
-              <item name="descriptor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Node" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -309,43 +297,12 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Node" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Node" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Node" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
-              <item name="descriptor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Node" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="ru" type="462c0819:PsiDirectoryNode" />
-              <item name="hardware" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -600,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592838620632</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added video update to error status on error.&#10;Swap insert of images and isert of image processing">
+      <created>1592913850764</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1592913850765</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -636,16 +600,16 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
+    <frame x="0" y="-37" width="1920" height="1117" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20177384" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16862327" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32824427" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32721713" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -653,7 +617,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3293348" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3283582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -688,7 +652,8 @@
     <MESSAGE value="Cpu, Gpu settings" />
     <MESSAGE value="Some" />
     <MESSAGE value="Added type attribute to Processor&#10;Changed process method. It uses nodeId&#10;Added ability to provide images" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added type attribute to Processor&#10;Changed process method. It uses nodeId&#10;Added ability to provide images" />
+    <MESSAGE value="Added video update to error status on error.&#10;Swap insert of images and isert of image processing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added video update to error status on error.&#10;Swap insert of images and isert of image processing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="516" y="417" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" />
@@ -868,16 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/ProcessOs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/hardware/GPU.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -912,16 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/ru/descriptor/ProcessorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="56" column="69" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/HttpServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -937,45 +882,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/MainService.java" />
-    <entry file="file://$PROJECT_DIR$/s.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/descriptor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="947">
-          <caret line="81" column="66" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10326#10327#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/p.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -983,34 +889,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/descriptor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="20" column="82" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1027,6 +909,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="20" column="82" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/ProcessOs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/ru/descriptor/ProcessorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="56" column="69" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="106" selection-start-line="10" selection-start-column="106" selection-end-line="10" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/p.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/s.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/HttpService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1034,10 +984,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/HttpService.java">
+    <entry file="file://$PROJECT_DIR$/descriptor.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+        <state relative-caret-position="465">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/descriptor.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="305" column="59" selection-start-line="305" selection-start-column="59" selection-end-line="305" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

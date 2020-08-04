@@ -59,4 +59,6 @@ public class ProcessOs {
         }, 0, period);
 
     }
+
+    public String getCommand(){return this.command;}
 }

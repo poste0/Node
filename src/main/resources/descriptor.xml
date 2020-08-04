@@ -20,9 +20,9 @@
 </descriptor><-->
 
 <descriptor>
-    <processor type="Image">
-        <command>python3 p.py</command>
-        <outputFile>images</outputFile>
+    <processor type="Video">
+        <command>python3 s.py</command>
+        <outputFile>video.avi</outputFile>
         <params prefix="">
             <param isDynamic="true">
                 <name>file</name>

@@ -48,7 +48,7 @@ public class MainController {
                 try {
                     result.createNewFile();
                     service.process(result, login, password, cameraId, videoId, nodeId);
-                } catch (IOException | JAXBException | InterruptedException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
