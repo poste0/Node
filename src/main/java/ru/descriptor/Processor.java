@@ -23,6 +23,9 @@ public class Processor {
     @XmlAttribute
     private String type;
 
+    @XmlElement
+    private TextMessage textMessage;
+
     public String getCommand() {
         return command;
     }
@@ -81,5 +84,13 @@ public class Processor {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public TextMessage getTextMessage() {
+        return textMessage;
+    }
+
+    public void setTextMessage(TextMessage textMessage) {
+        this.textMessage = textMessage;
     }
 }

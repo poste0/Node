@@ -15,8 +15,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import ru.DescriptorUtils;
 import ru.HttpRequest;
 import ru.ProcessOs;
+import ru.data.UserData;
+import ru.data.VideoData;
 import ru.descriptor.Descriptor;
 import ru.descriptor.Param;
+import ru.processor.ImageProcessor;
+import ru.processor.Processor;
+import ru.processor.VideoProcessor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -71,28 +76,24 @@ public class ProcessorServiceImpl implements ProcessorService {
 
     /**
      * Processes a video got from the platform. Sends the processing result back.
-     * @param file A file with video which was got from the platform
-     * @param login User's login
-     * @param password User's password
-     * @param cameraId Camera's id
-     * @param videoId Video's id to be able able to store it later
-     * @param nodeId node's id to be able to know the node on which the video is processed
+     * @param userData
+     * @param videoData
      */
 
     @Override
-    public void process(File file, String login, String password, String cameraId, String videoId, String nodeId){
+    public void process(UserData userData, VideoData videoData){
         try {
             Descriptor descriptor = DescriptorUtils.getDescriptor(loader);
 
             String processingType = descriptor.getProcessor().getType();
-            log.info("Processing for user {}, video with id {} with type {} has started", login, videoId, processingType);
+            log.info("Processing for user {}, video with id {} with type {} has started", userData.getLogin(), videoData.getVideoId().toString(), processingType);
 
-            if (!file.exists()) {
+            if (!videoData.getVideoFile().exists()) {
                 log.info("File doesn't exist. Creating a new file");
-                boolean isFileCreated = file.createNewFile();
+                boolean isFileCreated = videoData.getVideoFile().createNewFile();
                 log.info("File has been created");
                 if (!isFileCreated) {
-                    log.error("File with name {} has not been created", file.getName());
+                    log.error("File with name {} has not been created", videoData.getVideoFile().getName());
                     throw new FileNotFoundException("The file has not been created");
                 }
             }
@@ -100,7 +101,7 @@ public class ProcessorServiceImpl implements ProcessorService {
             //todo It's a dynamic param. It doesn't work well. Need to fix it
             Param fileParam = new Param();
             fileParam.setName("file");
-            fileParam.setValue(file.getPath());
+            fileParam.setValue(videoData.getVideoFile().getPath());
 
             // If processing results are images and there is no directory yet, then the directory must be created
             if (!Files.isDirectory(Paths.get(descriptor.getProcessor().getOutputFile())) && descriptor.getProcessor().getType().equals("Image")) {
@@ -114,57 +115,26 @@ public class ProcessorServiceImpl implements ProcessorService {
                 log.info("Process with command {} has started", videoProcess.getCommand());
                 videoProcess.startProcess(period, readerConsumer, readerConsumer);
 
-                Files.delete(file.toPath());
+                Files.delete(videoData.getVideoFile().toPath());
                 log.info("Process with command {} has finished. Video file has been deleted", videoProcess.getCommand());
 
 
             } catch (InterruptedException e) {
                 log.error("Process with command {} has finished with an error. Updating the source video to status \"error\"", videoProcess.getCommand());
-                updateSourceVideo(login, password, videoId, "error");
+                updateSourceVideo(userData.getLogin(), userData.getPassword(), videoData.getVideoId().toString(), "error");
                 throw new InterruptedException("Processing of video failed");
             }
 
+            Processor processor = null;
             if (processingType.equals("Video")) {
-                final String ffmpegCommand = "ffmpeg -i " + descriptor.getProcessor().getOutputFile() + " " + file.getPath() + " -v error";
-                ProcessOs ffmpegProcess = new ProcessOs(ffmpegCommand);
-                ffmpegProcess.startProcess(period, readerConsumer, readerConsumer);
-                log.info("Process with command {} has started", ffmpegProcess.getCommand());
-
-                log.info("Request to the platform is being created");
-                LinkedMultiValueMap<String, Object> videoBody = new LinkedMultiValueMap<>();
-                FileSystemResource fileResource = new FileSystemResource(file);
-                videoBody.add("file", fileResource);
-
-                HttpRequest request = context.getBean(HttpRequest.class);
-                request.init(login, password, HttpMethod.POST, MediaType.MULTIPART_FORM_DATA, "/app/rest/v2/files?name=" + file.getPath());
-
-                String videoFileInfo = httpService.send(request, videoBody);
-                log.info("Request with address {}, method {} has sent", request.getAddress(), request.getMethod());
-
-                Files.delete(file.toPath());
-                log.info("File with video has been deleted");
-
-                UUID videoProcessingId = insertNewVideoProcessing(login, password, videoId, nodeId);
-                insertNewVideo(login, password, videoId, cameraId, file, videoFileInfo, videoProcessingId);
-                updateSourceVideo(login, password, videoId, "ready");
+                processor = context.getBean(VideoProcessor.class, userData, videoData);
             } else if (descriptor.getProcessor().getType().equals("Image")) {
-                // If there is no directory which should be created, then there is an error.
-                if (!Files.isDirectory(Paths.get(descriptor.getProcessor().getOutputFile()))) {
-                    log.info("There is no directory. Video is being updated to status \"error\"");
-                    updateSourceVideo(login, password, videoId, "error");
-
-                    final String errorMessage = "Enter directory of images";
-                    log.error(errorMessage);
-                    throw new IllegalArgumentException(errorMessage);
-                }
-
-                UUID imageProcessingId = insertNewImageProcessings(login, password, nodeId);
-                insertNewImages(login, password, videoId, descriptor.getProcessor().getOutputFile(), imageProcessingId);
-                updateSourceVideo(login, password, videoId, "ready");
+                processor = context.getBean(ImageProcessor.class, userData, videoData);
             } else {
                 log.error("Wrong type of processor");
                 throw new IllegalArgumentException("Wrong type of processor");
             }
+            processor.process();
         }
         catch (Exception e){
             // todo It must be fixed because there is no information about the error.
