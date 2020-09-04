@@ -157,7 +157,7 @@ public abstract class AbstractProcessor implements Processor {
     }
 
     private String getFileName(File file){
-        String[] splittedFile = file.getName().split(".");
+        String[] splittedFile = file.getPath().split("\\.");
         StringBuilder fileNameBuilder = new StringBuilder();
         for(int i = 0; i < splittedFile.length - 1; i++){
             fileNameBuilder.append(splittedFile[i]);
@@ -170,7 +170,8 @@ public abstract class AbstractProcessor implements Processor {
         //todo Create good creating of files
         File files = new File(textMessage.getOutputDirectory());
         List<File> resultFiles = Arrays.asList(Objects.requireNonNull(files.listFiles()));
-        resultFiles = resultFiles.stream().filter(file -> { return file.getName().contains(fileName);}).collect(Collectors.toList());
+        String[] splittedFileName = fileName.split("/");
+        resultFiles = resultFiles.stream().filter(file -> { return file.getName().contains(splittedFileName[splittedFileName.length - 1]);}).collect(Collectors.toList());
 
         if(resultFiles.size() == 0){
             throw new FileExistsException("There is no file");
