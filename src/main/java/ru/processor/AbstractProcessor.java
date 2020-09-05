@@ -136,20 +136,20 @@ public abstract class AbstractProcessor implements Processor {
         return isTextMessageUsed;
     }
 
-    protected String getMessage(File file){
+    protected String getMessage(File file) throws FileExistsException{
         Descriptor descriptor = getDescriptor();
         TextMessage textMessage = descriptor.getProcessor().getTextMessage();
 
-        String fileName = getFileName(file);
+        File textMessageFile = findTextMessageFile(textMessage, file);
+        StringBuilder messageBuilder = new StringBuilder();
 
         try {
-            File textMessageFile = findTextMessageFile(textMessage, fileName);
-            StringBuilder messageBuilder = new StringBuilder();
             Files.readAllLines(textMessageFile.toPath()).forEach(line -> {
                 messageBuilder.append(line).append("\n");
             });
             return messageBuilder.toString();
-        } catch (IOException e) {
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
 
@@ -166,20 +166,27 @@ public abstract class AbstractProcessor implements Processor {
         return fileNameBuilder.toString();
     }
 
-    private File findTextMessageFile(TextMessage textMessage, String fileName) throws FileExistsException {
-        //todo Create good creating of files
-        File files = new File(textMessage.getOutputDirectory());
-        List<File> resultFiles = Arrays.asList(Objects.requireNonNull(files.listFiles()));
-        String[] splittedFileName = fileName.split("/");
-        resultFiles = resultFiles.stream().filter(file -> { return file.getName().contains(splittedFileName[splittedFileName.length - 1]);}).collect(Collectors.toList());
+    private String getFileExtension(File file){
+        return file.getName().substring(file.getName().lastIndexOf("."));
+    }
 
-        if(resultFiles.size() == 0){
+    private File findTextMessageFile(TextMessage textMessage, File file) throws FileExistsException{
+        List<File> textMessageFiles = Arrays.asList(
+                Objects.requireNonNull(
+                        new File(textMessage.getOutputDirectory()).listFiles()
+                )
+        );
+
+        String fileName = getFileName(file);
+        textMessageFiles = textMessageFiles.stream().filter(fileStream -> getFileName(fileStream).equals(fileName) && !getFileExtension(fileStream).equals(getFileExtension(file))).collect(Collectors.toList());
+
+        if(textMessageFiles.size() == 0){
             throw new FileExistsException("There is no file");
         }
-        else if(resultFiles.size() > 1){
+        else if(textMessageFiles.size() > 1){
             throw new FileExistsException("There are more than 2 files");
         }
 
-        return resultFiles.get(0);
+        return textMessageFiles.get(0);
     }
 }

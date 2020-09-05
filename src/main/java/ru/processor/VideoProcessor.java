@@ -1,7 +1,9 @@
 package ru.processor;
 
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.apache.commons.io.FileExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
@@ -72,7 +74,7 @@ public class VideoProcessor extends AbstractProcessor {
         log.info("Video of video processing with id {} has sent to the platform", processingId.toString());
     }
 
-    private JsonObject createVideoJson(){
+    private JsonObject createVideoJson() throws JsonIOException{
         JsonObject video = new JsonObject();
         video.addProperty("id", videoData.getVideoId().toString());
 
@@ -88,7 +90,12 @@ public class VideoProcessor extends AbstractProcessor {
 
         String message = "";
         if(isTextMessageUsed()){
-            message = getMessage(videoData.getVideoFile());
+            try {
+                message = getMessage(videoData.getVideoFile());
+            }
+            catch (FileExistsException e){
+                throw new JsonIOException("No message");
+            }
         }
 
         JsonObject jsonObject = new JsonObject();

@@ -1,5 +1,6 @@
 package ru.processor;
 
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.FileExistsException;
@@ -121,7 +122,12 @@ public class ImageProcessor extends AbstractProcessor {
         String message = "";
 
         if(isTextMessageUsed()){
-            message = getMessage(image);
+            try {
+                message = getMessage(image);
+            }
+            catch (FileExistsException e){
+                throw new JsonIOException("No message");
+            }
         }
 
         imageJson.addProperty("message", message);
