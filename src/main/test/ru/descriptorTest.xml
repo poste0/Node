@@ -20,9 +20,12 @@
 </descriptor><-->
 
 <descriptor>
-    <processor>
+    <processor type="Image">
         <command>test command</command>
         <outputFile>video.avi</outputFile>
+        <textMessage>
+            <outputDirectory>text</outputDirectory>
+        </textMessage>
         <params prefix="--">
             <param isDynamic="true">
                 <name>testParam1</name>

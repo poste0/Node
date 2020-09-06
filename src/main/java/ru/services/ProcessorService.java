@@ -1,6 +1,8 @@
 package ru.services;
 
 import org.springframework.stereotype.Service;
+import ru.data.UserData;
+import ru.data.VideoData;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
@@ -8,7 +10,7 @@ import java.io.IOException;
 
 
 public interface ProcessorService {
-    void process(File file, String login, String password, String cameraId, String videoId) throws JAXBException, IOException, InterruptedException;
+    void process(UserData userData, VideoData videoData);
 
     boolean isProcessing();
 }
