@@ -29,6 +29,7 @@
         <params prefix="">
             <param isDynamic="true">
                 <name>file</name>
+                <dynamicValueProvider>ru.descriptor.dynamicParam.VideoFileNameParamValueProvider</dynamicValueProvider>
             </param>
         </params>
     </processor>

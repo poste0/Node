@@ -109,7 +109,7 @@ public class ProcessorServiceImpl implements ProcessorService {
                 Files.createDirectory(Paths.get(descriptor.getProcessor().getOutputFile()));
             }
 
-            ProcessOs videoProcess = new ProcessOs(descriptor.getProcessor().getExecLine(Collections.singletonList(fileParam)));
+            ProcessOs videoProcess = new ProcessOs(descriptor.getProcessor().getExecLine(userData, videoData));
             long period = 1000;
             try {
                 log.info("Process with command {} has started", videoProcess.getCommand());

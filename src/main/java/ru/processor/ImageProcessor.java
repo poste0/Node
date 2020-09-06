@@ -7,6 +7,7 @@ import org.apache.commons.io.FileExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -33,8 +34,8 @@ import java.util.stream.Collectors;
 public class ImageProcessor extends AbstractProcessor {
     private static final Logger log = LoggerFactory.getLogger(ImageProcessor.class);
 
-    public ImageProcessor(UserData userData, VideoData videoData) throws FileNotFoundException {
-        super(userData, videoData);
+    public ImageProcessor(UserData userData, VideoData videoData, ResourceLoader loader) throws FileNotFoundException {
+        super(userData, videoData, loader);
     }
 
     @Override
@@ -126,7 +127,7 @@ public class ImageProcessor extends AbstractProcessor {
                 message = getMessage(image);
             }
             catch (FileExistsException e){
-                throw new JsonIOException("No message");
+                throw new JsonIOException(e.getMessage());
             }
         }
 

@@ -46,14 +46,16 @@ public abstract class AbstractProcessor implements Processor {
     /**
      * Loader to load descriptor from the resources
      */
-    @Autowired
     protected ResourceLoader loader;
 
     protected Descriptor descriptor;
 
     public AbstractProcessor(){}
 
-    public AbstractProcessor(UserData userData, VideoData videoData) throws FileNotFoundException {
+    @Autowired
+    public AbstractProcessor(UserData userData, VideoData videoData, ResourceLoader loader) throws FileNotFoundException {
+        this.loader = loader;
+
         descriptor = getDescriptor();
 
         this.userData = userData;
@@ -125,6 +127,7 @@ public abstract class AbstractProcessor implements Processor {
 
     protected Descriptor getDescriptor() throws FileNotFoundException {
         Descriptor descriptor = null;
+
         try {
             descriptor = DescriptorUtils.getDescriptor(loader);
         } catch (JAXBException | IOException e) {
@@ -162,13 +165,8 @@ public abstract class AbstractProcessor implements Processor {
     }
 
     private String getFileName(File file){
-        String[] splittedFile = file.getPath().split("\\.");
-        StringBuilder fileNameBuilder = new StringBuilder();
-        for(int i = 0; i < splittedFile.length - 1; i++){
-            fileNameBuilder.append(splittedFile[i]);
-        }
-
-        return fileNameBuilder.toString();
+        String fileName = file.getName();
+        return fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf("."));
     }
 
     private String getFileExtension(File file){

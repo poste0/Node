@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -34,8 +35,8 @@ public class VideoProcessor extends AbstractProcessor {
 
     private String videoFileInfo;
 
-    public VideoProcessor(UserData userData, VideoData videoData) throws FileNotFoundException {
-        super(userData, videoData);
+    public VideoProcessor(UserData userData, VideoData videoData, ResourceLoader loader) throws FileNotFoundException {
+        super(userData, videoData, loader);
     }
 
     @Override
@@ -128,8 +129,6 @@ public class VideoProcessor extends AbstractProcessor {
     }
 
     private void convertVideo() throws IOException, InterruptedException {
-        Descriptor descriptor = getDescriptor();
-
         final long period = 1000;
         final Consumer<BufferedReader> readerConsumer = reader -> {
             reader.lines().forEach(System.out::println);

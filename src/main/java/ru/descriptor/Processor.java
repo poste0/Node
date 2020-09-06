@@ -1,9 +1,14 @@
 package ru.descriptor;
 
+import ru.data.UserData;
+import ru.data.VideoData;
+import ru.descriptor.dynamicParam.DynamicParamValueProvider;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -30,22 +35,16 @@ public class Processor {
         return command;
     }
 
-    public String getExecLine(List<Param> dynamicParams){
+    public String getExecLine(UserData userData, VideoData videoData) throws RuntimeException{
         StringBuilder execLineBuilder = new StringBuilder();
         execLineBuilder.append(this.command);
         params.getParams().forEach(param -> {
-            if(param.getDynamic()){
-                if(!dynamicParams.stream().map((Function<Param, Object>) Param::getName).collect(Collectors.toList()).contains(param.getName())) {
-                    throw new IllegalStateException("Execution line has dynamic empty parameter");
+            if(param.isDynamic()){
+                try {
+                    setDynamicParamValue(param, userData, videoData);
+                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+                    throw new RuntimeException(e.getMessage());
                 }
-
-                Param finalParam = param;
-                param = dynamicParams.stream().filter(param1 -> param1.getName().equals(finalParam.getName())).findAny().orElseThrow(new Supplier<RuntimeException>() {
-                    @Override
-                    public RuntimeException get() {
-                        return new RuntimeException("No dynamic param in the list");
-                    }
-                });
             }
 
             execLineBuilder.append(" ")
@@ -57,6 +56,25 @@ public class Processor {
 
         return execLineBuilder.toString();
     }
+
+
+    private void setDynamicParamValue(Param param, UserData userData, VideoData videoData) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        if(!param.isDynamic()){
+            throw new IllegalArgumentException("Param in sot dynamic");
+        }
+
+        Class paramValueProvider = Class.forName(param.getDynamicValueProvider());
+
+        List<Class> interfaces = Arrays.asList(paramValueProvider.getInterfaces());
+        if(!interfaces.contains(DynamicParamValueProvider.class)){
+            throw new NoClassDefFoundError();
+        }
+
+        DynamicParamValueProvider provider = (DynamicParamValueProvider) paramValueProvider.newInstance();
+
+        param.setValue(provider.provide(userData, videoData));
+    }
+
 
     public void setCommand(String command) {
         this.command = command;
