@@ -4,14 +4,17 @@ import org.apache.commons.io.FileExistsException;
 import org.apache.commons.io.FileUtils;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
+import org.opentest4j.TestAbortedException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AbstractProcessorTest {
@@ -35,7 +38,11 @@ public class AbstractProcessorTest {
 
     @Before
     public void setUp(){
-        processorMock = new ProcessorMock(temporaryFolder.getRoot().getName());
+        try {
+            processorMock = new ProcessorMock(temporaryFolder.getRoot().getName());
+        } catch (FileNotFoundException e) {
+            throw new TestAbortedException(e.getMessage());
+        }
         contentFiles = initContentFiles();
     }
 
@@ -138,5 +145,10 @@ public class AbstractProcessorTest {
 
             return null;
         }).collect(Collectors.toList());
+    }
+
+    @Test
+    public void getDescriptor(){
+        assertDoesNotThrow(() -> {processorMock.getDescriptor();});
     }
 }

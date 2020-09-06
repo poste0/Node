@@ -16,8 +16,10 @@ import ru.data.UserData;
 import ru.data.VideoData;
 import ru.descriptor.Descriptor;
 import ru.descriptor.TextMessage;
+import ru.processor.exception.PreProcessException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,7 +33,7 @@ import java.util.stream.Collectors;
 public class ImageProcessor extends AbstractProcessor {
     private static final Logger log = LoggerFactory.getLogger(ImageProcessor.class);
 
-    public ImageProcessor(UserData userData, VideoData videoData) {
+    public ImageProcessor(UserData userData, VideoData videoData) throws FileNotFoundException {
         super(userData, videoData);
     }
 
@@ -71,8 +73,6 @@ public class ImageProcessor extends AbstractProcessor {
     @Override
     protected void insertNewData() {
         log.info("Images are sent to the platform");
-
-        Descriptor descriptor = getDescriptor();
 
         File[] images = getImageFiles(descriptor);
 
@@ -146,8 +146,7 @@ public class ImageProcessor extends AbstractProcessor {
     }
 
     @Override
-    protected void preprocess() {
-        Descriptor descriptor = getDescriptor();
+    protected void preprocess() throws PreProcessException {
 
         // If there is no directory which should be created, then there is an error.
         if (!Files.isDirectory(Paths.get(descriptor.getProcessor().getOutputFile()))) {
@@ -155,7 +154,7 @@ public class ImageProcessor extends AbstractProcessor {
 
             final String errorMessage = "Enter directory of images";
             log.error(errorMessage);
-            throw new IllegalArgumentException(errorMessage);
+            throw new PreProcessException(errorMessage);
         }
     }
 

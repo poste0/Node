@@ -16,10 +16,12 @@ import ru.data.UserData;
 import ru.data.VideoData;
 import ru.descriptor.Descriptor;
 import ru.descriptor.TextMessage;
+import ru.processor.exception.PreProcessException;
 import ru.services.HttpService;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -47,7 +49,13 @@ public abstract class AbstractProcessor implements Processor {
     @Autowired
     protected ResourceLoader loader;
 
-    public AbstractProcessor(UserData userData, VideoData videoData){
+    protected Descriptor descriptor;
+
+    public AbstractProcessor(){}
+
+    public AbstractProcessor(UserData userData, VideoData videoData) throws FileNotFoundException {
+        descriptor = getDescriptor();
+
         this.userData = userData;
         this.videoData = videoData;
     }
@@ -97,7 +105,7 @@ public abstract class AbstractProcessor implements Processor {
         log.info("Source video has been updated to status {}", status);
     }
 
-    protected abstract void preprocess();
+    protected abstract void preprocess() throws PreProcessException;
 
     public UUID getProcessingId() {
         return processingId;
@@ -115,12 +123,12 @@ public abstract class AbstractProcessor implements Processor {
 
     public void setVideoData(VideoData videoData){this.videoData = videoData;}
 
-    protected Descriptor getDescriptor(){
+    protected Descriptor getDescriptor() throws FileNotFoundException {
         Descriptor descriptor = null;
         try {
             descriptor = DescriptorUtils.getDescriptor(loader);
         } catch (JAXBException | IOException e) {
-            e.printStackTrace();
+            throw new FileNotFoundException("Descriptor is not found");
         }
 
         return descriptor;
@@ -128,8 +136,6 @@ public abstract class AbstractProcessor implements Processor {
 
     protected Boolean isTextMessageUsed(){
         if(isTextMessageUsed == null) {
-            Descriptor descriptor = getDescriptor();
-
             isTextMessageUsed = descriptor.getProcessor().getTextMessage() != null;
         }
 
@@ -137,7 +143,6 @@ public abstract class AbstractProcessor implements Processor {
     }
 
     protected String getMessage(File file) throws FileExistsException{
-        Descriptor descriptor = getDescriptor();
         TextMessage textMessage = descriptor.getProcessor().getTextMessage();
 
         File textMessageFile = findTextMessageFile(textMessage, file);

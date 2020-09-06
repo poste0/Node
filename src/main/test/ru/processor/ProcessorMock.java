@@ -9,21 +9,22 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProcessorMock extends AbstractProcessor {
     private String jUnitFolder;
 
-    public ProcessorMock(UserData userData, VideoData videoData) {
-        super(userData, videoData);
+    public ProcessorMock(UserData userData, VideoData videoData) throws FileNotFoundException {
+        this.userData = userData;
+        this.videoData = videoData;
+        this.descriptor = getDescriptor();
     }
 
-    public ProcessorMock(String jUnitFolder){
-        super(null, null);
-
+    public ProcessorMock(String jUnitFolder) throws FileNotFoundException{
         this.jUnitFolder = jUnitFolder;
+
+        this.descriptor = getDescriptor();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class ProcessorMock extends AbstractProcessor {
     }
 
     @Override
-    protected Descriptor getDescriptor(){
+    protected Descriptor getDescriptor() throws FileNotFoundException {
         try {
             JAXBContext context  = JAXBContext.newInstance(Descriptor.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -53,10 +54,7 @@ public class ProcessorMock extends AbstractProcessor {
 
             return descriptor;
         } catch (JAXBException e) {
-            e.printStackTrace();
-            assertEquals(0, -1);
+            throw new FileNotFoundException("Descriptor is not found");
         }
-
-        throw new NotImplementedException();
     }
 }

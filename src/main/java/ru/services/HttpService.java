@@ -3,11 +3,12 @@ package ru.services;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import ru.HttpRequest;
 
 public interface HttpService {
-    default String send(HttpRequest request, Object body){
+    default String send(HttpRequest request, Object body) throws RestClientException {
         HttpEntity entity = new HttpEntity(body, request.getHeaders());
 
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();

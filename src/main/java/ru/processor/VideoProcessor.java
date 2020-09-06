@@ -6,18 +6,23 @@ import com.google.gson.JsonParser;
 import org.apache.commons.io.FileExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.client.RestClientException;
 import ru.HttpRequest;
 import ru.ProcessOs;
 import ru.data.UserData;
 import ru.data.VideoData;
 import ru.descriptor.Descriptor;
+import ru.processor.exception.PreProcessException;
+import ru.processor.exception.SendFileException;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.UUID;
@@ -29,7 +34,7 @@ public class VideoProcessor extends AbstractProcessor {
 
     private String videoFileInfo;
 
-    public VideoProcessor(UserData userData, VideoData videoData) {
+    public VideoProcessor(UserData userData, VideoData videoData) throws FileNotFoundException {
         super(userData, videoData);
     }
 
@@ -112,16 +117,14 @@ public class VideoProcessor extends AbstractProcessor {
     }
 
     @Override
-    protected void preprocess() {
+    protected void preprocess() throws PreProcessException {
         try {
             convertVideo();
+            sendVideoFile();
+            deleteVideoFile();
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            throw new PreProcessException(e.getMessage());
         }
-
-        sendVideoFile();
-
-        deleteVideoFile();
     }
 
     private void convertVideo() throws IOException, InterruptedException {
@@ -139,26 +142,28 @@ public class VideoProcessor extends AbstractProcessor {
 
     }
 
-    private void sendVideoFile(){
+    private void sendVideoFile() throws SendFileException{
         log.info("Request to the platform is being created");
-        LinkedMultiValueMap<String, Object> videoBody = new LinkedMultiValueMap<>();
-        FileSystemResource fileResource = new FileSystemResource(videoData.getVideoFile());
-        videoBody.add("file", fileResource);
 
-        HttpRequest request = context.getBean(HttpRequest.class);
-        request.init(userData.getLogin(), userData.getPassword(), HttpMethod.POST, MediaType.MULTIPART_FORM_DATA, "/app/rest/v2/files?name=" + videoData.getVideoFile().getPath());
+        try {
+            LinkedMultiValueMap<String, Object> videoBody = new LinkedMultiValueMap<>();
+            FileSystemResource fileResource = new FileSystemResource(videoData.getVideoFile());
+            videoBody.add("file", fileResource);
 
-        videoFileInfo = httpService.send(request, videoBody);
-        log.info("Request with address {}, method {} has sent", request.getAddress(), request.getMethod());
+            HttpRequest request = context.getBean(HttpRequest.class);
+            request.init(userData.getLogin(), userData.getPassword(), HttpMethod.POST, MediaType.MULTIPART_FORM_DATA, "/app/rest/v2/files?name=" + videoData.getVideoFile().getPath());
+
+            videoFileInfo = httpService.send(request, videoBody);
+            log.info("Request with address {}, method {} has sent", request.getAddress(), request.getMethod());
+        }
+        catch (BeansException | RestClientException | NullPointerException e){
+            throw new SendFileException(e.getMessage());
+        }
+
     }
 
-    private void deleteVideoFile(){
-        try {
-            Files.delete(videoData.getVideoFile().toPath());
-            log.info("File with video has been deleted");
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+    private void deleteVideoFile() throws IOException{
+        Files.delete(videoData.getVideoFile().toPath());
+        log.info("File with video has been deleted");
     }
 }
