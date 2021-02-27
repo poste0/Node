@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="549d77e3-5482-4c2e-a744-4aa0860fe93a" name="Default Changelist" comment="Added UserData class to store login and password&#10;Added VideoData class to store video id, camera id, node id and video file&#10;&#10;Changed Processor class. Added textMessage field to store message in the descriptor&#10;&#10;Added TextMessage class for the xml tag&#10;&#10;Added Processor Interface to process results&#10;Added AbstractProcessor class to store main things to process results. Code is partially moved from ProcessorServiceImpl&#10;Added ImageProcessor class to process image result&#10;Added VideoProcessor class to process video results&#10;Changed ProcessorService. Now it takes UserData and VideoData parameters&#10;Changed ProcessorServiceImpl class. This takes UserData and VideoData parameters for the method process. Moved logic to process results into other classes.&#10;Changed MainController class to pass UserData and VideoData parameters">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/descriptor/dynamicParam/DynamicParamValueProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/descriptor/dynamicParam/VideoFileNameParamValueProvider.java" afterDir="false" />
+    <list default="true" id="549d77e3-5482-4c2e-a744-4aa0860fe93a" name="Default Changelist" comment="Added dynamicValueProvider">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/descriptor/Param.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/descriptor/Param.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/descriptor/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/descriptor/Processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/processor/AbstractProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/processor/AbstractProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/processor/ImageProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/processor/ImageProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/processor/VideoProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/processor/VideoProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/descriptor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/ru/descriptor/ProcessorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/ru/descriptor/ProcessorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/ru/descriptorTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/ru/descriptorTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/descriptor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/descriptor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/descriptor.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/Descriptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/MainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/MainController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/MainController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/MainService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ru/Param.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/requirements-testing.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_darkflow.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/training/annotations/1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/training/annotations/2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/training/images/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/training/images/2.jpg" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,110 +30,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/AbstractProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="195" column="108" selection-start-line="195" selection-start-column="108" selection-end-line="195" selection-end-column="108" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5469#5470#0" expanded="true" />
-                <element signature="e#5549#5550#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/test/ru/processor/AbstractProcessorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1710">
-              <caret line="116" column="73" selection-start-line="116" selection-start-column="73" selection-end-line="116" selection-end-column="73" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4360#4361#0" expanded="true" />
-                <element signature="e#4434#4435#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/VideoProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/descriptor.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/descriptor.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/p.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/test/ru/processor/ProcessorMock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/ImageProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="126" column="32" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -154,13 +49,12 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="features/imagetype" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -217,13 +111,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/processor/ImageProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/processor/AbstractProcessor.java" />
       </list>
-    </option>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
     </option>
   </component>
   <component name="MavenProjectNavigator">
@@ -384,7 +271,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -395,7 +281,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/test/ru" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Platform" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -416,19 +302,7 @@
       <recent name="$PROJECT_DIR$/src/main/test/ru" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Docker.Dockerfile">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.Main" />
       <module name="Node" />
@@ -442,16 +316,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AbstractProcessorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Node" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.processor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.processor" />
-      <option name="MAIN_CLASS_NAME" value="ru.processor.AbstractProcessorTest" />
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -511,13 +381,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.Dockerfile" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.AbstractProcessorTest" />
         <item itemvalue="JUnit.ProcessorTest" />
-        <item itemvalue="JUnit.AbstractProcessorTest.testGetMessageOkCase" />
         <item itemvalue="JUnit.AbstractProcessorTest.testGetMessageWithoutFileCase" />
+        <item itemvalue="JUnit.AbstractProcessorTest.testGetMessageOkCase" />
       </list>
     </recent_temporary>
   </component>
@@ -533,6 +411,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -552,6 +431,11 @@
       <workItem from="1578767890813" duration="6026000" />
       <workItem from="1578776032412" duration="45000" />
       <workItem from="1578829044350" duration="11681000" />
+      <workItem from="1614259910001" duration="4628000" />
+      <workItem from="1614333376664" duration="600000" />
+      <workItem from="1614334912899" duration="4553000" />
+      <workItem from="1614427535798" duration="1631000" />
+      <workItem from="1614429831440" duration="1573000" />
     </task>
     <task id="LOCAL-00001" summary="Change">
       <created>1578339176673</created>
@@ -686,13 +570,17 @@
       <option name="project" value="LOCAL" />
       <updated>1599340796539</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added dynamicValueProvider">
+      <created>1599426624082</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1599426624082</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AbstractProcessorTest_testGetMessageOkCase - 2020.09.06 at 21h 20m 24s.xml">
-      <configuration name="AbstractProcessorTest.testGetMessageOkCase" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AbstractProcessorTest_testGetMessageOkCase - 2020.09.06 at 21h 20m 53s.xml">
       <configuration name="AbstractProcessorTest.testGetMessageOkCase" configurationId="JUnit" />
     </history-entry>
@@ -720,9 +608,13 @@
     <history-entry file="AbstractProcessorTest - 2020.09.07 at 01h 05m 34s.xml">
       <configuration name="AbstractProcessorTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AbstractProcessorTest - 2020.09.07 at 01h 07m 32s.xml">
+      <configuration name="AbstractProcessorTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19013304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -738,7 +630,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3293348" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32824427" />
+      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.32824427" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -748,9 +640,18 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -765,6 +666,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="File" />
@@ -778,31 +680,12 @@
     <MESSAGE value="Added UserData class to store login and password&#10;Added VideoData class to store video id, camera id, node id and video file&#10;&#10;Changed Processor class. Added textMessage field to store message in the descriptor&#10;&#10;Added TextMessage class for the xml tag&#10;&#10;Added Processor Interface to process results&#10;Added AbstractProcessor class to store main things to process results. Code is partially moved from ProcessorServiceImpl&#10;Added ImageProcessor class to process image result&#10;Added VideoProcessor class to process video results&#10;Changed ProcessorService. Now it takes UserData and VideoData parameters&#10;Changed ProcessorServiceImpl class. This takes UserData and VideoData parameters for the method process. Moved logic to process results into other classes.&#10;Changed MainController class to pass UserData and VideoData parameters" />
     <MESSAGE value="Split changed" />
     <MESSAGE value="s" />
-    <option name="LAST_COMMIT_MESSAGE" value="s" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="516" y="417" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" />
-    <state x="516" y="417" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/70.27.1210.997@70.27.1210.997" />
-    <state x="240" y="122" width="860" height="814" key="CommitChangelistDialog2" />
-    <state x="240" y="122" width="860" height="814" key="CommitChangelistDialog2/70.27.1210.997@70.27.1210.997" />
-    <state width="1144" height="423" key="GridCell.Tab.0.bottom" />
-    <state width="1144" height="423" key="GridCell.Tab.0.bottom/70.27.1210.997@70.27.1210.997" />
-    <state width="1144" height="423" key="GridCell.Tab.0.center" />
-    <state width="1144" height="423" key="GridCell.Tab.0.center/70.27.1210.997@70.27.1210.997" />
-    <state width="1144" height="423" key="GridCell.Tab.0.left" />
-    <state width="1144" height="423" key="GridCell.Tab.0.left/70.27.1210.997@70.27.1210.997" />
-    <state width="1144" height="423" key="GridCell.Tab.0.right" />
-    <state width="1144" height="423" key="GridCell.Tab.0.right/70.27.1210.997@70.27.1210.997" />
-    <state x="270" y="261" width="800" height="535" key="Vcs.Push.Dialog.v2" />
-    <state x="270" y="261" width="800" height="535" key="Vcs.Push.Dialog.v2/70.27.1210.997@70.27.1210.997" />
-    <state x="331" y="353" key="com.intellij.ide.util.TipDialog" />
-    <state x="331" y="353" key="com.intellij.ide.util.TipDialog/70.27.1210.997@70.27.1210.997" />
-    <state x="443" y="445" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
-    <state x="443" y="445" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/70.27.1210.997@70.27.1210.997" />
+    <MESSAGE value="Added dynamicValueProvider" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added dynamicValueProvider" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Node$All_in_Node.ic" NAME="All in Node Coverage Results" MODIFIED="1589201486077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Node$Main.ic" NAME="Main Coverage Results" MODIFIED="1575207756612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Node$All_in_Node.ic" NAME="All in Node Coverage Results" MODIFIED="1589201486077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
@@ -882,19 +765,6 @@ file.getName();</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Params.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/10.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/a/10.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1120,13 +990,6 @@ file.getName();</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="111" column="91" selection-start-line="111" selection-start-column="91" selection-end-line="111" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/ru/descriptor/TestDynamicParamValueProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1146,28 +1009,6 @@ file.getName();</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/dynamicParam/DynamicParamValueProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/dynamicParam/VideoFileNameParamValueProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#253#254#0" expanded="true" />
-            <element signature="e#310#311#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -1175,13 +1016,6 @@ file.getName();</expression-string>
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Descriptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
@@ -1212,16 +1046,6 @@ file.getName();</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/VideoProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/ru/processor/ProcessorMock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1229,13 +1053,6 @@ file.getName();</expression-string>
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1266,16 +1083,6 @@ file.getName();</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/ImageProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="126" column="32" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/ru/processor/AbstractProcessorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
@@ -1288,15 +1095,92 @@ file.getName();</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/dynamicParam/DynamicParamValueProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/dynamicParam/VideoFileNameParamValueProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#253#254#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Descriptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/descriptor/Params.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/AbstractProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="195" column="108" selection-start-line="195" selection-start-column="108" selection-end-line="195" selection-end-column="108" />
+        <state relative-caret-position="-368">
+          <caret line="140" column="18" selection-start-line="140" selection-start-column="18" selection-end-line="140" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5469#5470#0" expanded="true" />
             <element signature="e#5549#5550#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/ImageProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-94">
+          <caret line="126" column="32" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/processor/VideoProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1504">
+          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/services/ProcessorServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2604">
+          <caret line="111" column="91" selection-start-line="111" selection-start-column="91" selection-end-line="111" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
         </state>
       </provider>
     </entry>
