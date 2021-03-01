@@ -23,6 +23,7 @@ import ru.processor.exception.PreProcessException;
 import ru.processor.exception.SendFileException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -163,6 +164,7 @@ public class VideoProcessor extends AbstractProcessor {
 
     private void deleteVideoFile() throws IOException{
         Files.delete(videoData.getVideoFile().toPath());
+        Files.delete(new File(descriptor.getProcessor().getOutputFile()).toPath());
         log.info("File with video has been deleted");
     }
 }
