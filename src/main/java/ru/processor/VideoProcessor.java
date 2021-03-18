@@ -62,7 +62,11 @@ public class VideoProcessor extends AbstractProcessor {
         JsonObject node = new JsonObject();
         node.addProperty("id", videoData.getNodeId().toString());
 
+        JsonObject video = new JsonObject();
+        video.addProperty("id", videoData.getVideoId().toString());
+
         videoProcessing.add("node", node);
+        videoProcessing.add("video", video);
 
         return videoProcessing;
     }
